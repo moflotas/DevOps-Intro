@@ -263,3 +263,51 @@ I already solved 3 tasks, the only one left is
 TODO
 
 ## Task 2 — Pull Request Template & First PR (3 pts)
+
+### 2.1: Add the Template
+
+```
+❯ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+❯ mkdir -p .github
+❯ cat > .github/pull_request_template.md << 'EOF'
+> 
+❯ 
+❯ cat > .github/pull_request_template.md << 'EOF'
+## Goal
+<!-- What does this PR accomplish? 1 sentence. -->
+
+## Changes
+-
+
+## Testing
+<!-- How did you verify it? -->
+
+## Checklist
+- [ ] Title is a clear sentence (≤ 70 chars)
+- [ ] Commits are signed (`git log --show-signature`)
+- [ ] `submissions/labN.md` updated
+EOF
+❯ git add .github/pull_request_template.md
+❯ git commit -S -s -m "docs: add PR template"
+[main 0c3a4f8] docs: add PR template
+ 1 file changed, 13 insertions(+)
+ create mode 100644 .github/pull_request_template.md
+❯ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 787 bytes | 787.00 KiB/s, done.
+Total 4 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:moflotas/DevOps-Intro.git
+   66bbd4d..0c3a4f8  main -> main
+❯ git switch feature/lab1
+Switched to branch 'feature/lab1'
+Your branch is up to date with 'origin/feature/lab1'.
+```
+
+### 2.2: Open the Lab PR
+
