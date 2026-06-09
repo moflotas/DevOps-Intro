@@ -366,3 +366,47 @@ On GitHub (Settings → Branches → Add rule for `main`):
 - [x] **Require signed commits**
 - [x] **Require a pull request before merging**
 - [x] **Require linear history**
+
+### B.2: Try to break the rule
+
+```
+❯ gst
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+❯ git commit --allow-empty -m "test: unsigned commit (should fail)"
+
+[main a596d1d] test: unsigned commit (should fail)
+❯ gst
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+❯ git push origin main
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 435 bytes | 435.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: Review all repository rules at https://github.com/moflotas/DevOps-Intro/rules?ref=refs%2Fheads%2Fmain
+remote: 
+remote: - Changes must be made through a pull request.
+remote: 
+To github.com:moflotas/DevOps-Intro.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:moflotas/DevOps-Intro.git'
+```
+
+### B.3: Document
+
+![Branch ruleset](artifacts/lab1/05-branch-ruleset.png)
+
+> A 3-4 sentence reflection: *what would Knight Capital's deploy day have looked like with branch protection + required
+signing on the prod deploy branch?*
+
+If Knight Capital had branch protection and required signed commits on their production deploy branch, that broken code
+never would have gone out. The process would have blocked the merge until someone actually reviewed the change and
+signed off on it. A single tired engineer wouldn't have been able to push the old, untested script by mistake. They
+would have gotten an error message instead of losing $460 million in under an hour.
